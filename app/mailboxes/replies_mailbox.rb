@@ -8,7 +8,7 @@ class RepliesMailbox < ApplicationMailbox
         # mail.subject
         # mail.decaded Text part of email
         return unless user.present?
-        ticket.commets.create(user: user, body: mail.decoded)
+        ticket.comments.create(user: user, body: mail.decoded)
       end
 
       def ticket 
