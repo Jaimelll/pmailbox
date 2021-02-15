@@ -1,7 +1,7 @@
 class ApplicationMailbox < ActionMailbox::Base
   # routing /something/i => :somewhere
   # 1er rails s
-  routing /jdvizarraga@gmail.com/i => :support
+  routing /info@jorgealmacen.cu.ma/i => :support
   # 2do rails s
   routing RepliesMailbox::MATCHER => :replies
 
