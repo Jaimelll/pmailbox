@@ -1,6 +1,7 @@
 class RepliesMailbox < ApplicationMailbox
 
-  MATCHER = /support+(.+)@example.com/i
+  MATCHER = /support@jorgealmacen.cu.ma\./i
+  
       def process
     
         # mail
@@ -8,7 +9,7 @@ class RepliesMailbox < ApplicationMailbox
         # mail.subject
         # mail.decaded Text part of email
         return unless user.present?
-        ticket.comments.create(user: user, body: mail.decoded)
+       Comment.create(user: user, body: mail.decoded,ticket_id: 11)
       end
 
       def ticket 
@@ -16,8 +17,7 @@ class RepliesMailbox < ApplicationMailbox
       end
       
       def ticket_id
-        recipient = mail.recipients.find {|r| MATCHER.match?(r)}
-        recipient[MATCHER,1]
+        var=11
       end
       
       def user
