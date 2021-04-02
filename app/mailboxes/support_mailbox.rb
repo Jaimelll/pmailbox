@@ -9,6 +9,7 @@ class SupportMailbox < ApplicationMailbox
     return unless user.present?
 
     Ticket.create(user: user, title: mail.subject, body: mail.decoded)
+    AnswerMailer.notify(user).deliver
   end
 
   def user

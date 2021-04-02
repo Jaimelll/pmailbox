@@ -1,6 +1,6 @@
 class RepliesMailbox < ApplicationMailbox
 
-  MATCHER = /support@jorgealmacen.cu.ma\./i
+ 
   
       def process
     
