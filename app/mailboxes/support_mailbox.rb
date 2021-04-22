@@ -8,8 +8,14 @@ class SupportMailbox < ApplicationMailbox
 
     return unless user.present?
 
+    if mail.parts.present?
+      Ticket.create(user: user, title: mail.subject, body: mail.parts[0].body.decoded)
+    else
+      Ticket.create(user: user, title: mail.subject, body: mail.decoded)
+    end
+
    # Ticket.create(user: user, title: mail.subject, body: mail.decoded)
-   Ticket.create(user: user, title: mail.subject, body: mail.body.decoded)
+   #  Ticket.create(user: user, title: mail.subject, body: mail.body.decoded)
     AnswerMailer.notify(user).deliver
   end
 
