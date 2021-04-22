@@ -2,9 +2,9 @@ require "active_support/core_ext/integer/time"
 
 Rails.application.configure do
   # Prepare the ingress controller used to receive mail
-   # config.hosts << "b4c20715d02c.ngrok.io"
+  # config.hosts << "6c011e1ebcc9.ngrok.io"
    # config.hosts << "localhost"
-    config.action_mailbox.ingress = :sendgrid
+  config.action_mailbox.ingress = :sendgrid
 
    
    config.action_mailer.delivery_method = :sendgrid_actionmailer
