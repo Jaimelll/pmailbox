@@ -9,7 +9,7 @@ class SupportMailbox < ApplicationMailbox
     return unless user.present?
 
    # Ticket.create(user: user, title: mail.subject, body: mail.decoded)
-   Ticket.create(user: user, title: "sujeto1", body: "detalle1")
+   Ticket.create(user: user, title: mail.subject, body: "constante")
     AnswerMailer.notify(user).deliver
   end
 
