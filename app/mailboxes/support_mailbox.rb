@@ -13,10 +13,9 @@ class SupportMailbox < ApplicationMailbox
     else
       Ticket.create(user: user, title: mail.subject, body: mail.decoded)
     end
-
-   # Ticket.create(user: user, title: mail.subject, body: mail.decoded)
-   #  Ticket.create(user: user, title: mail.subject, body: mail.body.decoded)
-    AnswerMailer.notify(user).deliver
+    AnswerMailer.notify(user,mail).deliver
+   
+  #  AnswerMailer.notify(user).deliver
   end
 
   def user

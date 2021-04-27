@@ -1,28 +1,41 @@
 class RepliesMailbox < ApplicationMailbox
 
- 
+ MATCHER = /replies+(.+)@parse.jcontador.tk/i
   
-      def process
+# MATCHER = /info@parse.jcontador.tk/i
+
+  def process
+  # mail
+  # mail.from
+  # mail.subject
+  # mail.decaded Text part of email
+  return unless user.present?
+
     
-        # mail
-        # mail.from
-        # mail.subject
-        # mail.decaded Text part of email
-        return unless user.present?
-       Comment.create(user: user, body: mail.decoded,ticket_id: 11)
+
+      if mail.parts.present?
+        ticket.comments.create(user: user, body: mail.parts[0].body.decoded)
+        
+      else
+        ticket.comments.create(user: user, body: mail.decoded)
       end
+
+  
+  end
 
       def ticket 
         user.tickets.find ticket_id
       end
       
       def ticket_id
-        var=11
+        recipient = mail.recipients.find {|r| MATCHER.match?(r)}
+        recipient[MATCHER,1]
       end
       
       def user
         @user ||= User.find_by email: mail.from
       end
+      
       
 
  

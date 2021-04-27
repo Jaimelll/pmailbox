@@ -1,8 +1,10 @@
 class AnswerMailer < ApplicationMailer
   
- def notify(user)
+ def notify(user,mmail)
    @user=user
-   mail(to: @user.email, subject:'respuesta mailbox')
+   @mmail=mmail
+   mail(to: @user.email, subject: 'RE:'+@mmail.subject)
  end
 
 end
+ 
